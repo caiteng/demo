@@ -11,7 +11,6 @@ public class WebsocketEndPoint extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session,TextMessage message) throws Exception {
-        super.handleTextMessage(session, message);System.out.print("11111111");
         TextMessage returnMessage = new TextMessage(message.getPayload()+" received at server");
         session.sendMessage(returnMessage);
     }

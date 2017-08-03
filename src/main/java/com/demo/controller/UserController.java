@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 /**
@@ -33,11 +37,12 @@ public class UserController {
         return modelAndView;
     }
 
-    @RequestMapping("/test")
-    public ModelAndView jump(){
-        ModelAndView modelAndView = null;
-        modelAndView = new ModelAndView();
-        modelAndView.setViewName("test");
-        return modelAndView;
+
+    @RequestMapping("/validate")
+    public void validate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name=request.getParameter("name");
+        //List<User> users = userService.get(name);
+        PrintWriter out = response.getWriter();
+        out.print(name);
     }
 }

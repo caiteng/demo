@@ -26,6 +26,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
         @OnOpen
         public void onOpen(Session session) {
             this.session = session;
+            System.out.print(session.toString());
             webSocketSet.add(this);     //加入set中
             addOnlineCount();           //在线数加1
             System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
@@ -49,7 +50,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
          */
         @OnMessage
         public void onMessage(String message, Session session) {
-            System.out.println("来自客户端的消息:" + message);
+            System.out.println("来自客户端"+session.getQueryString()+"的消息:" + message);
             //群发消息
             for (WebSocketTest item : webSocketSet) {
                 try {
