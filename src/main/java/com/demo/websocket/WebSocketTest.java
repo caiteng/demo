@@ -3,6 +3,8 @@ package com.demo.websocket;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 
@@ -14,6 +16,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
         //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
         public static CopyOnWriteArraySet<WebSocketTest> webSocketSet = new CopyOnWriteArraySet<WebSocketTest>();
+        //
+        public static Map<String,WebSocketTest> group = new HashMap<String, WebSocketTest>();
 
         //与某个客户端的连接会话，需要通过它来给客户端发送数据
         private Session session;
@@ -26,10 +30,12 @@ import java.util.concurrent.CopyOnWriteArraySet;
         @OnOpen
         public void onOpen(Session session) {
             this.session = session;
-            System.out.print(session.toString());
+            if(session.getQueryString()==null){
+                return;
+            }
             webSocketSet.add(this);     //加入set中
             addOnlineCount();           //在线数加1
-            System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
+            System.out.println(session.getQueryString()+"加入！当前在线人数为" + getOnlineCount());
         }
 
         /**
@@ -42,6 +48,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
             System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
         }
 
+        String name;
         /**
          * 收到客户端消息后调用的方法
          *
@@ -51,10 +58,11 @@ import java.util.concurrent.CopyOnWriteArraySet;
         @OnMessage
         public void onMessage(String message, Session session) {
             System.out.println("来自客户端"+session.getQueryString()+"的消息:" + message);
+            name=session.getQueryString();
             //群发消息
             for (WebSocketTest item : webSocketSet) {
                 try {
-                    item.sendMessage(message);
+                    item.sendMessage(name,message);
                 } catch (IOException e) {
                     e.printStackTrace();
                     continue;
@@ -80,8 +88,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
          * @param message
          * @throws IOException
          */
-        public void sendMessage(String message) throws IOException {
-            this.session.getBasicRemote().sendText(message);
+        public void sendMessage(String name,String message) throws IOException {
+            this.session.getBasicRemote().sendText(name+"："+message);
 
         }
 
@@ -97,11 +105,15 @@ import java.util.concurrent.CopyOnWriteArraySet;
             WebSocketTest.onlineCount--;
         }
 
-
-        public void sendMsg(String msg) {
+        /**
+         * 主动群发
+         * @param name
+         * @param msg
+         */
+        public void sendMsg(String name,String msg) {
             for (WebSocketTest item : webSocketSet) {
                 try {
-                    item.sendMessage(msg);
+                    item.sendMessage(name,msg);
                 } catch (IOException e) {
                     e.printStackTrace();
                     continue;

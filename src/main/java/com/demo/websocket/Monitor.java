@@ -14,7 +14,7 @@ public class Monitor implements Runnable {
 
     public void run() {
         WebSocketTest webSocketTest = new WebSocketTest();
-        webSocketTest.sendMsg("当前时间:" + new Date());
+        webSocketTest.sendMsg("提示","当前时间:" + new Date());
     }
 
     public void sendMsg() {
