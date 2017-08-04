@@ -161,35 +161,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>7.0</version>
-    </dependency>
-    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-websocket</artifactId>
       <version>4.3.10.RELEASE</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-messaging</artifactId>
-      <version>4.3.10.RELEASE</version>
-    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat7-websocket -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat7-websocket</artifactId>
-      <version>7.0.47</version>
-      <scope>provided</scope>
-    </dependency>
 
-    <!--jackson-->
-    <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-core-asl</artifactId>
-      <version>1.9.13</version>
-    </dependency>
 
     <!-- shiro核心包 -->
     <dependency>
