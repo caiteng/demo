@@ -23,30 +23,10 @@ Welcome<br/><input id="text" type="text"/>
 
 <script type="text/javascript">
     var websocket = null;
-    websocket = new WebSocket("ws://localhost:1902/demo/webSocket");
-    //连接发生错误的回调方法
-    websocket.onerror = function () {
-        setMessageInnerHTML("WebSocket连接发生错误");
-    };
-    //连接成功建立的回调方法
-    websocket.onopen = function () {
-        setMessageInnerHTML("WebSocket连接成功");
-    }
-    //接收到消息的回调方法
-    websocket.onmessage = function (event) {
-        setMessageInnerHTML(event.data);
-    }
-    //连接关闭的回调方法
-    websocket.onclose = function () {
-        setMessageInnerHTML("WebSocket连接关闭");
-    }
-
 
     function readContent(){
         var name = document.getElementById('name').value;
-
         if(name==''){
-            support("");
             return;
         }
         $.ajax({
@@ -58,15 +38,11 @@ Welcome<br/><input id="text" type="text"/>
             }
         });
     }
-
-
-
-
     //连接
     function support(token){
         //判断当前浏览器是否支持WebSocket
         if ('WebSocket' in window) {
-            websocket = new WebSocket("ws://localhost:1902/demo/webSocket?token="+token);
+            websocket = new WebSocket("ws://localhost:1902/webSocket?token="+token);
         }
         else {
             alert('当前浏览器 Not support websocket')

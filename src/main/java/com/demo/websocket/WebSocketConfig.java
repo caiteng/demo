@@ -32,7 +32,7 @@ public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocke
         addInterceptors，handler添加拦截器，可以在调用handler前后加入我们自己的逻辑代码。*/
 
        //WebIM WebSocket通道
-        registry.addHandler(chatWebSocketHandler(),"/webSocket").addInterceptors(myInterceptor());
+        registry.addHandler(chatWebSocketHandler(),"/springWebSocket").addInterceptors(myInterceptor());
 
        // registry.addHandler(chatWebSocketHandler(),"/sockjs/webSocket").setAllowedOrigins(allowsOrigins).addInterceptors(myInterceptor()).withSockJS();
     }

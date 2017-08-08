@@ -136,10 +136,10 @@
     Javascript and reload this page!</h2></noscript>
 <div>
     <div id="connect-container">
-        <input id="radio1" type="radio" name="group1" onclick="updateUrl('/websocket');">
+        <input id="radio1" type="radio" name="group1" onclick="updateUrl('/springWebSocket');">
         <label for="radio1">W3C WebSocket</label>
         <br>
-        <input id="radio2" type="radio" name="group1" onclick="updateUrl('/websocket');">
+        <input id="radio2" type="radio" name="group1" onclick="updateUrl('/demo/springWebSocket');">
         <label for="radio2">SockJS</label>
         <div id="sockJsTransportSelect" style="visibility:hidden;">
             <span>SockJS transport:</span>
