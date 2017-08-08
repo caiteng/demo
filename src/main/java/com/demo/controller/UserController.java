@@ -2,6 +2,10 @@ package com.demo.controller;
 
 import com.demo.entity.User;
 import com.demo.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +30,11 @@ public class UserController {
 
     @RequestMapping("/getAll")
     public ModelAndView findUser(){
+        UsernamePasswordToken token = new UsernamePasswordToken("aaa", "123");
+//        SecurityUtils.setSecurityManager(securityManager); // 注入SecurityManager
+        Subject subject = SecurityUtils.getSubject(); // 获取Subject单例对象
+        subject.login(token); // 登陆
+
         ModelAndView modelAndView = null;
             modelAndView = new ModelAndView();
             //调用service方法得到用户列表
