@@ -30,12 +30,8 @@
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.2.3" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
-          <element id="library" level="project" name="Maven: javax:javaee-api:7.0" />
-          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.0" />
-          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.springframework:spring-websocket:4.3.10.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-messaging:4.3.10.RELEASE" />
-          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.40" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-core:1.2.5" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.6.4" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.8.3" />

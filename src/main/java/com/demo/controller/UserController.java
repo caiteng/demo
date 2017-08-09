@@ -21,7 +21,7 @@ import java.util.List;
  * Created by Administrator on 2017-07-25.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class UserController {
 
     //service类
@@ -54,4 +54,6 @@ public class UserController {
         PrintWriter out = response.getWriter();
         out.print(name);
     }
+
+
 }

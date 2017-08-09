@@ -121,6 +121,7 @@
     <include refid="Base_Column_List" />
     from user
   </select>
+
   <select id="getByName" parameterType="String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

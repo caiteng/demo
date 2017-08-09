@@ -11,6 +11,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,7 +21,8 @@ import java.util.Set;
  */
 class UserRealm extends AuthorizingRealm {
     // 用户对应的角色信息与权限信息都保存在数据库中，通过UserService获取数据
-    private UserService userService = new UserServiceImpl();
+    @Autowired
+    private UserService userService;
 
     //测试
     private static final String USER_NAME = "admin";
