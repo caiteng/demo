@@ -23,7 +23,7 @@ public class LoginController {
     //跳转到登录页面
     @RequestMapping("/login")
     public ModelAndView login() throws Exception {
-        ModelAndView mav = new ModelAndView("login");
+        ModelAndView mav = new ModelAndView("login/login");
         return mav;
     }
 
@@ -40,6 +40,7 @@ public class LoginController {
     @RequestMapping(value="/checkLogin.json",method= RequestMethod.POST)
     @ResponseBody
     public String checkLogin(String username,String password) throws Exception {
+        System.out.println("checkLogin");
         Map<String, Object> result = new HashMap<String, Object>();
         try{
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -50,6 +51,7 @@ public class LoginController {
                 currentUser.login(token);//验证角色和权限
             }
         }catch(Exception ex){
+            ex.printStackTrace();
             throw new Exception(ex.getMessage());
         }
         result.put("success", true);

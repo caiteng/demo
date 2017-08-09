@@ -17,20 +17,19 @@
   </listener>
 
 
-  <!--&lt;!&ndash; Shiro Filter 拦截器配置,放在所有filter前,shiro第一个拦截&ndash;&gt;-->
-    <!--<filter>-->
-      <!--<filter-name>shiroFilter</filter-name>-->
-      <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-      <!--<init-param>-->
-        <!--<param-name>targetFilterLifecycle</param-name>-->
-        <!--<param-value>true</param-value>-->
-      <!--</init-param>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-      <!--<filter-name>shiroFilter</filter-name>-->
-      <!--<url-pattern>*.jhtml</url-pattern>-->
-      <!--<url-pattern>*.json</url-pattern>-->
-    <!--</filter-mapping>-->
+  <!-- Shiro Filter 拦截器配置,放在所有filter前,shiro第一个拦截-->
+    <filter>
+      <filter-name>shiroFilter</filter-name>
+      <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+      <init-param>
+        <param-name>targetFilterLifecycle</param-name>
+        <param-value>true</param-value>
+      </init-param>
+    </filter>
+    <filter-mapping>
+      <filter-name>shiroFilter</filter-name>
+      <url-pattern>*.json</url-pattern>
+    </filter-mapping>
   <!--解决POST乱码问题-->
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
@@ -65,8 +64,7 @@
 
   <!--首页-->
   <welcome-file-list>
-    <welcome-file>index2.jsp</welcome-file>
-    <welcome-file>index3.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>
