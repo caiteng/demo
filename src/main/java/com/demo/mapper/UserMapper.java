@@ -18,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     List<User> getAll();
+
+    User getByName(String name);
 }

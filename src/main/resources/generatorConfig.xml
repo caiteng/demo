@@ -58,6 +58,14 @@
         <!-- 指定数据库表 -->
         <table tableName="user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" ></table>
+        <!--<table tableName="role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
+        <!--<table tableName="user_role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
+        <!--<table tableName="permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
+        <!--<table tableName="role_permission" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
 
 
 

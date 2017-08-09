@@ -1,16 +1,24 @@
 package com.demo.service;
 
+import com.demo.entity.Permission;
+import com.demo.entity.Role;
 import com.demo.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017-07-25.
  */
 public interface UserService {
 
-    public User get(int id);
+    User get(int id);
 
     List<User> getAll();
 
+    Set<Role> findRoles(String username);
+
+    Set<Permission> findPermissions(String username);
+
+    User findByUsername(String username);
 }
