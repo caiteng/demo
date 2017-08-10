@@ -5,7 +5,16 @@
 
     <title>index Page</title>
 </head>
+<link rel="stylesheet" href="/css/login/reset.css"/>
+<link rel="stylesheet" href="/css/login/supersized.css"/>
+<link rel="stylesheet" href="/css/login/style.css"/>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="/js/login.js"></script>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+<script src="/js/common/html5shiv.js"></script>
+<style>
+    canvas{position: fixed; top: 0px; left: 0px; }
+</style>
 <body>
     <input type="text" id="name" />
     <button onclick="readContent()">登录</button>

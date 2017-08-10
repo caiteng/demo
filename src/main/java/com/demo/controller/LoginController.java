@@ -2,6 +2,9 @@ package com.demo.controller;
 
 import com.demo.util.JsonUtil;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
@@ -42,19 +45,27 @@ public class LoginController {
     public String checkLogin(String username,String password) throws Exception {
         System.out.println("checkLogin");
         Map<String, Object> result = new HashMap<String, Object>();
-        try{
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-            Subject currentUser = SecurityUtils.getSubject();
-            if (!currentUser.isAuthenticated()){
-                //使用shiro来验证
-                token.setRememberMe(true);
-                currentUser.login(token);//验证角色和权限
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        Subject subject = SecurityUtils.getSubject();
+        if (!subject.isAuthenticated()) {
+            token.setRememberMe(true);
+            try {
+                subject.login(token);//验证角色和权限
+            } catch (IncorrectCredentialsException ice) {
+                // 捕获密码错误异常
+                result.put("error","账号或密码错误");
+                return JsonUtil.toJson(result);
+            } catch (UnknownAccountException uae) {
+                // 捕获未知用户名异常
+                result.put("error","账号或密码错误");
+                return JsonUtil.toJson(result);
+            } catch (ExcessiveAttemptsException eae) {
+                // 捕获错误登录过多的异常
+                result.put("error", "登录错误次数过多");
+                return JsonUtil.toJson(result);
             }
-        }catch(Exception ex){
-            ex.printStackTrace();
-            throw new Exception(ex.getMessage());
         }
-        result.put("success", true);
+        result.put("success", "登录成功");
         return JsonUtil.toJson(result);
     }
 

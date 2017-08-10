@@ -64,7 +64,7 @@
 
   <!--首页-->
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index4.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>
