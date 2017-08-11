@@ -29,6 +29,12 @@ public class LoginController {
         ModelAndView mav = new ModelAndView("login/login");
         return mav;
     }
+    //跳转到登录页面
+    @RequestMapping("/login2")
+    public ModelAndView login2() throws Exception {
+        ModelAndView mav = new ModelAndView("login/login2");
+        return mav;
+    }
 
     //跳转到登录成功页面
     @RequestMapping("/loginsuccess")

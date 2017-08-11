@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
     <%--<script src="<%=request.getContextPath()%>/static/bui/js/jquery-1.8.1.min.js"></script>--%>

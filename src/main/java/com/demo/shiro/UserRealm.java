@@ -24,11 +24,8 @@ class UserRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
-    //测试
-    private static final String USER_NAME = "admin";
-    private static final String PASSWORD = "123456";
-
     /**
+     * 授予权限
      * 提供用户信息返回权限信息
      */
     @Override
