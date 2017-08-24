@@ -8,38 +8,38 @@
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:config/properties/redis.properties" />
+ <!--   <context:property-placeholder location="classpath:config/properties/redis.properties" />
 
-    <!-- 注解扫描 -->
+    &lt;!&ndash; 注解扫描 &ndash;&gt;
     <context:component-scan base-package="com.demo.redis"/>
 
-    <!-- jedis连接池配置 -->
+    &lt;!&ndash; jedis连接池配置 &ndash;&gt;
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <!-- 最小空闲连接数 -->
+        &lt;!&ndash; 最小空闲连接数 &ndash;&gt;
         <property name="minIdle" value="${redis.minIdle}"/>
-        <!-- 最大空闲连接数 -->
+        &lt;!&ndash; 最大空闲连接数 &ndash;&gt;
         <property name="maxIdle" value="${redis.maxIdle}"/>
-        <!-- 最大连接数 -->
-        <!--<property name="maxTotal" value="${redis.maxTotal}"/>-->
-        <!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
-        <!--<property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>-->
-        <!-- 在获取连接的时候检查有效性, 默认false -->
+        &lt;!&ndash; 最大连接数 &ndash;&gt;
+        &lt;!&ndash;<property name="maxTotal" value="${redis.maxTotal}"/>&ndash;&gt;
+        &lt;!&ndash; 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 &ndash;&gt;
+        &lt;!&ndash;<property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>&ndash;&gt;
+        &lt;!&ndash; 在获取连接的时候检查有效性, 默认false &ndash;&gt;
         <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
-        <!-- 每次释放连接的最大数目 -->
+        &lt;!&ndash; 每次释放连接的最大数目 &ndash;&gt;
         <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}"/>
-        <!-- 释放连接的扫描间隔（毫秒） -->
+        &lt;!&ndash; 释放连接的扫描间隔（毫秒） &ndash;&gt;
         <property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}"/>
-        <!-- 连接最小空闲时间 -->
+        &lt;!&ndash; 连接最小空闲时间 &ndash;&gt;
         <property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}"/>
-        <!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
+        &lt;!&ndash; 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 &ndash;&gt;
         <property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}"/>
-        <!-- 在空闲时检查有效性, 默认false -->
+        &lt;!&ndash; 在空闲时检查有效性, 默认false &ndash;&gt;
         <property name="testWhileIdle" value="${redis.testWhileIdle}"/>
-        <!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
-        <!--<property name="blockWhenExhausted" value="${redis.blockWhenExhausted}"/>-->
+        &lt;!&ndash; 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true &ndash;&gt;
+        &lt;!&ndash;<property name="blockWhenExhausted" value="${redis.blockWhenExhausted}"/>&ndash;&gt;
     </bean>
 
-    <!-- redis连接池 -->
+    &lt;!&ndash; redis连接池 &ndash;&gt;
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
         <constructor-arg name="poolConfig" ref="poolConfig"/>
         <constructor-arg name="host" value="${redis.host}"/>
@@ -52,7 +52,7 @@
         <property name="jedisPool" ref="jedisPool"></property>
     </bean>
 
-    <!-- 开启Aspect切面支持 -->
+    &lt;!&ndash; 开启Aspect切面支持 &ndash;&gt;
     <aop:aspectj-autoproxy/>
-
+-->
 </beans>
