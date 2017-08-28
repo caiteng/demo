@@ -6,6 +6,7 @@ import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,20 +26,32 @@ public class LoginController {
 
     //跳转到登录页面
     @RequestMapping("/login")
-    public ModelAndView login() throws Exception {
+    public ModelAndView login(){
         ModelAndView mav = new ModelAndView("login/login");
         return mav;
     }
     //跳转到登录页面
+    @RequestMapping("/error")
+    public ModelAndView error()  {
+        ModelAndView mav = new ModelAndView("error");
+        return mav;
+    }
+    //跳转到登录页面
     @RequestMapping("/login2")
-    public ModelAndView login2() throws Exception {
+    public ModelAndView login2() {
         ModelAndView mav = new ModelAndView("login/login2");
+        return mav;
+    }
+    //跳转到登录页面
+    @RequestMapping("/403")
+    public ModelAndView error403() {
+        ModelAndView mav = new ModelAndView("error/403");
         return mav;
     }
 
     //跳转到登录成功页面
     @RequestMapping("/loginsuccess")
-    public ModelAndView loginsuccess() throws Exception {
+    public ModelAndView loginsuccess(){
         ModelAndView mav = new ModelAndView("loginsuccess");
         return mav;
     }
@@ -52,18 +65,18 @@ public class LoginController {
         System.out.println("checkLogin");
         Map<String, Object> result = new HashMap<String, Object>();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        Subject subject = SecurityUtils.getSubject();
+        Subject subject  = SecurityUtils.getSubject();
         if (!subject.isAuthenticated()) {
             token.setRememberMe(true);
             try {
                 subject.login(token);//验证角色和权限
             } catch (IncorrectCredentialsException ice) {
                 // 捕获密码错误异常
-                result.put("error","账号或密码错误");
+                result.put("error", "账号或密码错误");
                 return JsonUtil.toJson(result);
             } catch (UnknownAccountException uae) {
                 // 捕获未知用户名异常
-                result.put("error","账号或密码错误");
+                result.put("error", "账号或密码错误");
                 return JsonUtil.toJson(result);
             } catch (ExcessiveAttemptsException eae) {
                 // 捕获错误登录过多的异常

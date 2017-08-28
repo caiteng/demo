@@ -20,4 +20,11 @@
     </bean>
     <!--控制器映射器和控制器适配器-->
     <mvc:annotation-driven></mvc:annotation-driven>
+
+
+    <!--shiro注解配置，需配在mvc里才能起作用-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+    <!-- AOP式方法级权限检查 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor" />
 </beans>

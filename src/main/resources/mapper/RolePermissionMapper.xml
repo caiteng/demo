@@ -28,4 +28,7 @@
       </if>
     </trim>
   </insert>
+  <select id="findermissionByRoleId" resultMap="BaseResultMap">
+    SELECT * FROM  role_permission WHERE r_id=#{r_id}
+  </select>
 </mapper>

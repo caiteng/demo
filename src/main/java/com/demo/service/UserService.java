@@ -18,7 +18,7 @@ public interface UserService {
 
     Set<Role> findRoles(String username);
 
-    Set<Permission> findPermissions(String username);
+    Set<Permission> findPermissions(Set<Role> roles);
 
     User findByUsername(String username);
 }

@@ -24,15 +24,18 @@ password: <input type="password" id="password"><br><br>
             success: function(data) {
                 console.log(data);
                 if(data.success){
+                    console.log(data);
                     alert(data.success);
                     //登录成功
-                    window.location.href = "<%=request.getContextPath()%>" +  "/loginsuccess";
+                    window.location.href = "<%=request.getContextPath()%>" +  "/user/getAll.json";
                 }else{
+                    console.log(data);
                     alert(data.error);
                 }
             },
             error: function(data) {
-                alert("登录失败");
+                console.log(data);
+                alert(data);
             }
         });
     });

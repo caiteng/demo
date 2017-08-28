@@ -4,6 +4,8 @@ import com.demo.entity.User;
 import com.demo.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,26 +30,32 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/getAll")
+    @RequestMapping("/getAll.json")
+    @RequiresRoles("管理员")
+    @RequiresPermissions("/admin/index")
     public ModelAndView findUser(){
-        UsernamePasswordToken token = new UsernamePasswordToken("aaa", "123");
+        Subject subject = SecurityUtils.getSubject();
+//        if(subject.hasRole("管理员")) {
+//            //有权限
+//            System.out.println(111);
+//        } else {
+//            //无权限
+//            System.out.println(222);
+//        }
 //        SecurityUtils.setSecurityManager(securityManager); // 注入SecurityManager
-        Subject subject = SecurityUtils.getSubject(); // 获取Subject单例对象
-        subject.login(token); // 登陆
-
-        ModelAndView modelAndView = null;
-            modelAndView = new ModelAndView();
-            //调用service方法得到用户列表
-            List<User> users = userService.getAll();
-            //将得到的用户列表内容添加到ModelAndView中
-            modelAndView.addObject("users",users);
-            //设置响应的jsp视图
-            modelAndView.setViewName("userList");
+        ModelAndView modelAndView = new ModelAndView();
+        //调用service方法得到用户列表
+        List<User> users = userService.getAll();
+        //将得到的用户列表内容添加到ModelAndView中
+        modelAndView.addObject("users",users);
+        //设置响应的jsp视图
+        modelAndView.setViewName("userList");
         return modelAndView;
     }
 
 
     @RequestMapping("/validate")
+    @RequiresRoles("admin")
     public void validate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name=request.getParameter("name");
         //List<User> users = userService.get(name);

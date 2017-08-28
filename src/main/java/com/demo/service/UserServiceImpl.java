@@ -1,17 +1,11 @@
 package com.demo.service;
 
-import com.demo.entity.Permission;
-import com.demo.entity.Role;
-import com.demo.entity.User;
-import com.demo.mapper.RoleMapper;
-import com.demo.mapper.UserMapper;
-import com.demo.mapper.UserRoleMapper;
+import com.demo.entity.*;
+import com.demo.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017-07-25.
@@ -23,6 +17,12 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private UserRoleMapper userRoleMapper;
+    @Autowired
+    private RoleMapper roleMapper;
+    @Autowired
+    private RolePermissionMapper rolePermissionMapper;
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     public User get(int id)  {
         User users = userMapper.selectByPrimaryKey(id);
@@ -43,11 +43,23 @@ public class UserServiceImpl implements UserService {
     }
 
     public Set<Role> findRoles(String username) {
-        return null;
+        Set<Role> roles=new HashSet<Role>();
+        List<UserRole> UserRoles= userRoleMapper.findRoleByUserId(getByName(username).getId());
+        for(UserRole userRole : UserRoles){
+            roles.add(roleMapper.selectByPrimaryKey(userRole.getrId()));
+        }
+        return roles;
     }
 
-    public Set<Permission> findPermissions(String username) {
-        return null;
+    public Set<Permission> findPermissions(Set<Role> roles) {
+        Set<Permission> permissions=new HashSet<Permission>();
+        for(Role role:roles) {
+            List<RolePermission> r_ps=rolePermissionMapper.findermissionByRoleId(role.getId());
+            for(RolePermission r_p:r_ps) {
+                permissions.add(permissionMapper.selectByPrimaryKey(r_p.getpId()));
+            }
+        }
+        return permissions;
     }
 
     public User findByUsername(String username) {

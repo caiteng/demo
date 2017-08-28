@@ -16,7 +16,8 @@
         <tr>
             <td>${u.id}</td>
             <td>${u.name}</td>
-            <td>${u.age}</td>
+            <td>${u.createTime}</td>
+            <td>${u.lastLoginTime}</td>
         </tr>
     </c:forEach>
 

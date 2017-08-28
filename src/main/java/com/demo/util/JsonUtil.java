@@ -12,7 +12,6 @@ public class JsonUtil {
 	}
 
 	public static String toJson(Object o) {
-
 		try {
 			return JSON.toJSONString(o, filter);
 		} catch (Exception e) {
