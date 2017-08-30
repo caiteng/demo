@@ -31,6 +31,7 @@
             <value>
                 /checkLogin.json = anon
                 /logout.json = anon
+                /home.json = anon
                 /** = authc
             </value>
         </property>

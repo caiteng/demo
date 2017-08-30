@@ -42,6 +42,12 @@ public class LoginController {
         ModelAndView mav = new ModelAndView("login/login2");
         return mav;
     }
+    //跳转到home
+    @RequestMapping("/home.json")
+    public ModelAndView login4() {
+        ModelAndView mav = new ModelAndView("login/home");
+        return mav;
+    }
     //跳转到登录页面
     @RequestMapping("/403")
     public ModelAndView error403() {
@@ -91,7 +97,7 @@ public class LoginController {
     /**
      * 退出登录
      */
-    @RequestMapping(value="/logout.json",method=RequestMethod.POST)
+    @RequestMapping(value="/logout")
     @ResponseBody
     public String logout() {
         Map<String, Object> result = new HashMap<String, Object>();
