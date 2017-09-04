@@ -31,7 +31,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/getAll.json")
-    @RequiresRoles("管理员")
+    @RequiresRoles("管理员1")
     @RequiresPermissions("/admin/index")
     public ModelAndView findUser(){
         Subject subject = SecurityUtils.getSubject();
@@ -45,9 +45,9 @@ public class UserController {
 //        SecurityUtils.setSecurityManager(securityManager); // 注入SecurityManager
         ModelAndView modelAndView = new ModelAndView();
         //调用service方法得到用户列表
-        List<User> users = userService.getAll();
+        User user = userService.get(1);
         //将得到的用户列表内容添加到ModelAndView中
-        modelAndView.addObject("users",users);
+        modelAndView.addObject("users",user);
         //设置响应的jsp视图
         modelAndView.setViewName("userList");
         return modelAndView;

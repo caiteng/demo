@@ -12,14 +12,18 @@
     <title>test</title>
 </head>
 <table>
-    <c:forEach items="${users}" var="u">
-        <tr>
-            <td>${u.id}</td>
-            <td>${u.name}</td>
-            <td>${u.createTime}</td>
-            <td>${u.lastLoginTime}</td>
-        </tr>
-    </c:forEach>
+    <%--<c:forEach items="${users}" var="u">--%>
+        <%--<tr>--%>
+            <%--<td>${u.id}</td>--%>
+            <%--<td>${u.name}</td>--%>
+            <%--<td>${u.createTime}</td>--%>
+            <%--<td>${u.lastLoginTime}</td>--%>
+        <%--</tr>--%>
+    <%--</c:forEach>--%>
+        <td>${users.id}</td>
+        <td>${users.name}</td>
+        <td>${users.createTime}</td>
+        <td>${users.lastLoginTime}</td>
 
 </table>
 <body>

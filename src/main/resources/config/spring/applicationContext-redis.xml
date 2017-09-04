@@ -1,50 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="
-            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
- <!--   <context:property-placeholder location="classpath:config/properties/redis.properties" />
-
-    &lt;!&ndash; 注解扫描 &ndash;&gt;
     <context:component-scan base-package="com.demo.redis"/>
 
-    &lt;!&ndash; jedis连接池配置 &ndash;&gt;
+    <!--jedis连接池配置-->
     <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        &lt;!&ndash; 最小空闲连接数 &ndash;&gt;
+
+        <!--最小空闲连接数-->
         <property name="minIdle" value="${redis.minIdle}"/>
-        &lt;!&ndash; 最大空闲连接数 &ndash;&gt;
+        <!--最大空闲连接数-->
         <property name="maxIdle" value="${redis.maxIdle}"/>
-        &lt;!&ndash; 最大连接数 &ndash;&gt;
-        &lt;!&ndash;<property name="maxTotal" value="${redis.maxTotal}"/>&ndash;&gt;
-        &lt;!&ndash; 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 &ndash;&gt;
-        &lt;!&ndash;<property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>&ndash;&gt;
-        &lt;!&ndash; 在获取连接的时候检查有效性, 默认false &ndash;&gt;
+        <!-- 最大连接数-->
+        <property name="maxActive" value="${redis.maxTotal}"/>
+        <!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+        <property name="maxWait" value="${redis.maxWaitMillis}"/>
+
+        <!--在获取连接的时候检查有效性, 默认false-->
         <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
-        &lt;!&ndash; 每次释放连接的最大数目 &ndash;&gt;
+        <!--每次释放连接的最大数目-->
         <property name="numTestsPerEvictionRun" value="${redis.numTestsPerEvictionRun}"/>
-        &lt;!&ndash; 释放连接的扫描间隔（毫秒） &ndash;&gt;
+        <!--释放连接的扫描间隔（毫秒）-->
         <property name="timeBetweenEvictionRunsMillis" value="${redis.timeBetweenEvictionRunsMillis}"/>
-        &lt;!&ndash; 连接最小空闲时间 &ndash;&gt;
+        <!--连接最小空闲时间-->
         <property name="minEvictableIdleTimeMillis" value="${redis.minEvictableIdleTimeMillis}"/>
-        &lt;!&ndash; 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 &ndash;&gt;
+        <!--连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放-->
         <property name="softMinEvictableIdleTimeMillis" value="${redis.softMinEvictableIdleTimeMillis}"/>
-        &lt;!&ndash; 在空闲时检查有效性, 默认false &ndash;&gt;
+        <!--&lt;!&ndash; 在空闲时检查有效性, 默认false &ndash;&gt;-->
         <property name="testWhileIdle" value="${redis.testWhileIdle}"/>
-        &lt;!&ndash; 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true &ndash;&gt;
-        &lt;!&ndash;<property name="blockWhenExhausted" value="${redis.blockWhenExhausted}"/>&ndash;&gt;
+        <!--连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true-->
+        <!--<property name="whenExhaustedAction" value="${redis.blockWhenExhausted}"/>-->
     </bean>
 
-    &lt;!&ndash; redis连接池 &ndash;&gt;
+    <!-- redis连接池 -->
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
         <constructor-arg name="poolConfig" ref="poolConfig"/>
         <constructor-arg name="host" value="${redis.host}"/>
-        <constructor-arg name="port" value="${redis.port}"/>
         <constructor-arg name="password" value="${redis.pass}"/>
+        <constructor-arg name="port" value="${redis.port}"/>
         <constructor-arg name="timeout" value="${redis.timeout}"/>
     </bean>
 
@@ -52,7 +48,6 @@
         <property name="jedisPool" ref="jedisPool"></property>
     </bean>
 
-    &lt;!&ndash; 开启Aspect切面支持 &ndash;&gt;
-    <aop:aspectj-autoproxy/>
--->
+    <!--开启Aspect切面支持-->
+    <!--<aop:aspectj-autoproxy/>-->
 </beans>
