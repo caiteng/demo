@@ -4,6 +4,7 @@ package com.demo.aspect;
  * Created by caiteng on 2017-09-04.
  */
 
+import com.demo.core.exception.DemoException;
 import com.demo.service.UserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -24,12 +25,15 @@ import org.springframework.test.context.transaction.BeforeTransaction;
 public class RegisterAspect {
 
     /**
+     * 查询结果处理
      * @param joinPoint 接入点
      * @param result 目标方法的返回结果
      */
     @AfterReturning(value="execution(* com.demo.service.UserService.*(..))", returning = "result")
     public void afterMethod(JoinPoint joinPoint, Object result){
-        System.out.println(result.toString());
+
+       // throw new DemoException("结果不存在");
+
     }
 
     /**

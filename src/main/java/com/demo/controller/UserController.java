@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.core.exception.DemoException;
 import com.demo.entity.User;
 import com.demo.service.UserService;
 import org.apache.shiro.SecurityUtils;
@@ -19,6 +20,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import static org.apache.shiro.web.filter.mgt.DefaultFilter.user;
+
 /**
  * Created by Administrator on 2017-07-25.
  */
@@ -33,7 +36,7 @@ public class UserController {
     @RequestMapping("/get.json")
     @RequiresRoles("管理员")
     @RequiresPermissions("/admin/index")
-    public ModelAndView findUser(){
+    public ModelAndView findUser(String id){
         Subject subject = SecurityUtils.getSubject();
 //        if(subject.hasRole("管理员")) {
 //            //有权限
@@ -45,7 +48,12 @@ public class UserController {
 //        SecurityUtils.setSecurityManager(securityManager); // 注入SecurityManager
         ModelAndView modelAndView = new ModelAndView();
         //调用service方法得到用户列表
-        User user = userService.get(1);
+        User user =null;
+        try {
+            user = userService.get(Integer.valueOf(id));
+        }catch (DemoException d){
+            System.out.println(d.getMessage());
+        }
         //将得到的用户列表内容添加到ModelAndView中
         modelAndView.addObject("users",user);
         //设置响应的jsp视图

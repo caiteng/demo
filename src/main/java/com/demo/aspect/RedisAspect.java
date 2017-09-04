@@ -20,14 +20,20 @@ public class RedisAspect {
     private RedisCache redisCache;
 
     /**
-     * 配置切点，对所有service的get方法的结果进行缓存
+     * 配置get切点，对所有service的get方法的结果进行缓存
      */
     @Pointcut("execution(* com.demo.service.*.get(..))")
-    public void GetPointCut(){
+    public void getPointCut(){
+    }
+    /**
+     * 配置update切点，对所有service的get方法的结果进行缓存
+     */
+    @Pointcut("execution(* com.demo.service.*.get(..))")
+    public void updatePointCut(){
     }
 
-    @Around("GetPointCut()")
-    public Object around(ProceedingJoinPoint joinPoint){
+    @Around("getPointCut()")
+    public Object aroundGetPointCut(ProceedingJoinPoint joinPoint){
 
         //获取key key="demo"+类名+方法名+参数
         StringBuffer redisKey=new StringBuffer();
@@ -72,6 +78,40 @@ public class RedisAspect {
 
         //将查询到的数据返回
         return object;
-
    }
+
+    @Around("updatePointCut()")
+    public Object aroundUpdatePointCut(ProceedingJoinPoint joinPoint){
+        //获取key key="demo"+类名+get+参数
+        StringBuffer redisKey=new StringBuffer();
+        redisKey.append("demo");
+
+        String className = joinPoint.getTarget().getClass().getSimpleName();
+        redisKey.append("_").append(className);
+        String methodName = joinPoint.getSignature().getName();
+        redisKey.append("_").append("get");
+        //先获取目标方法参数
+        Object[] args = joinPoint.getArgs();
+        for(Object obj:args){
+            redisKey.append("_").append(String.valueOf(obj));
+        }
+        System.out.println("redisKey为"+redisKey.toString());
+        //执行方法，获得更新后新数据
+        Object object = null;
+        try {
+            object = joinPoint.proceed();
+        } catch (Throwable e) {
+
+            e.printStackTrace();
+        }
+        //将数据库中查询的数据放到redis中
+        System.out.println("把更新后的数据存储到redis中...");
+
+        redisCache.setDataToRedis(redisKey.toString(), object);
+
+        //将查询到的数据返回
+        return object;
+
+    }
+
 }

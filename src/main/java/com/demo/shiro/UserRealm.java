@@ -30,7 +30,7 @@ class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("授权-doGetAuthorizationInfo");
+        System.out.println("授权");
         String username = (String) principals.getPrimaryPrincipal();
 
         // 根据用户名查询当前用户拥有的角色
@@ -59,6 +59,7 @@ class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        System.out.println("认证");
         String username = (String) token.getPrincipal();
         User user = userService.findByUsername(username);
         if (user == null) {

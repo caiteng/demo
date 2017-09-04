@@ -27,7 +27,7 @@ password: <input type="password" id="password"><br><br>
                     console.log(data);
                     alert(data.success);
                     //登录成功
-                    window.location.href = "<%=request.getContextPath()%>" +  "/user/get.json";
+                    window.location.href = "<%=request.getContextPath()%>" +  "/user/get.json?id="+1;
                 }else{
                     console.log(data);
                     alert(data.error);
