@@ -1,6 +1,8 @@
 package com.demo.entity;
 
-public class UserRole {
+import java.io.Serializable;
+
+public class UserRole implements Serializable {
     private Integer uId;
 
     private Integer rId;

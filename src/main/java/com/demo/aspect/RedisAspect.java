@@ -1,9 +1,9 @@
-package com.demo.redis;
+package com.demo.aspect;
 
+import com.demo.redis.RedisCache;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -19,29 +19,32 @@ public class RedisAspect {
     @Qualifier("redisCache")
     private RedisCache redisCache;
 
-    //设置切点：使用xml，在xml中配置
-    @Pointcut("execution(* com.demo.service.*.get(java.lang.Integer))")    //测试用，这里还额外指定了方法名称，方法参数类型，方法形参等，比较完整的切点表达式
-    public void myPointCut(){
-
+    /**
+     * 配置切点，对所有service的get方法的结果进行缓存
+     */
+    @Pointcut("execution(* com.demo.service.*.get(..))")
+    public void GetPointCut(){
     }
 
-    @Around("myPointCut()")
+    @Around("GetPointCut()")
     public Object around(ProceedingJoinPoint joinPoint){
-        //前置：到redis中查询缓存
-        System.out.println("调用从redis中查询的方法...");
 
+        //获取key key="demo"+类名+方法名+参数
+        StringBuffer redisKey=new StringBuffer();
+        redisKey.append("demo");
+        String className = joinPoint.getTarget().getClass().getSimpleName();
+        redisKey.append("_").append(className);
+        String methodName = joinPoint.getSignature().getName();
+        redisKey.append("_").append(methodName);
         //先获取目标方法参数
-        String applId = null;
         Object[] args = joinPoint.getArgs();
-        if (args != null && args.length > 0) {
-            applId = String.valueOf(args[0]);
+        for(Object obj:args){
+            redisKey.append("_").append(String.valueOf(obj));
         }
-
-        //redis中key格式：    applId
-        String redisKey = applId;
+        System.out.println("redisKey为"+redisKey.toString());
 
         //获取从redis中查询到的对象
-        Object objectFromRedis = redisCache.getDataFromRedis(redisKey);
+        Object objectFromRedis = redisCache.getDataFromRedis(redisKey.toString());
 
         //如果查询到了
         if(null != objectFromRedis){
@@ -63,12 +66,12 @@ public class RedisAspect {
         System.out.println("从数据库中查询的数据...");
 
         //后置：将数据库中查询的数据放到redis中
-        System.out.println("调用把数据库查询的数据存储到redis中的方法...");
+        System.out.println("把数据库查询的数据存储到redis中...");
 
-        redisCache.setDataToRedis(redisKey, object);
+        redisCache.setDataToRedis(redisKey.toString(), object);
 
         //将查询到的数据返回
         return object;
 
-    }
+   }
 }

@@ -30,8 +30,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/getAll.json")
-    @RequiresRoles("管理员1")
+    @RequestMapping("/get.json")
+    @RequiresRoles("管理员")
     @RequiresPermissions("/admin/index")
     public ModelAndView findUser(){
         Subject subject = SecurityUtils.getSubject();

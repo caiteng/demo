@@ -1,6 +1,8 @@
 package com.demo.entity;
 
-public class RolePermission {
+import java.io.Serializable;
+
+public class RolePermission implements Serializable {
     private Integer rId;
 
     private Integer pId;
