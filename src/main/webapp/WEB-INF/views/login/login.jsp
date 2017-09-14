@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8" %>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
@@ -87,11 +87,13 @@
                 type:"post",
                 dataType:"json",
                 beforeSend:function(){
-                    layer.msg('开始登录，请注意后台控制台。');
+                    layer.msg('登录中。');
                 },
                 success:function(result){
                     layer.close(load);
+
                     console.log(result);
+
                     if(result.status != 200){
                         layer.msg(result.message,function(){});
                         $('.password').val('');

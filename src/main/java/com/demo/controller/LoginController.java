@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,10 +66,13 @@ public class LoginController {
     /**
      * 验证用户名和密码
      */
-    @RequestMapping(value="/checkLogin",method= RequestMethod.POST)
+    @RequestMapping(value="/checkLogin",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String checkLogin(String username,String password) throws Exception {
+    public String checkLogin(HttpServletResponse response,String username, String password) throws Exception {
         System.out.println("checkLogin");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setContentType("application/json;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Map<String, Object> result = new HashMap<String, Object>();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject subject  = SecurityUtils.getSubject();
@@ -98,7 +102,7 @@ public class LoginController {
         }
         result.put("status", 200);
         result.put("message", "Login successful");
-        result.put("message",new String("欲转换字符串44".getBytes(),"utf-8"));
+        result.put("message",new String("登陆成功".getBytes(),"utf-8"));
         result.put("back_url", "/home");
         return JsonUtil.toJson(result);
     }
