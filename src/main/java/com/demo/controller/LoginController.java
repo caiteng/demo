@@ -30,7 +30,7 @@ public class LoginController {
         ModelAndView mav = new ModelAndView("login/login");
         return mav;
     }
-    //跳转到登录页面
+    //跳转到error页面
     @RequestMapping("/error")
     public ModelAndView error()  {
         ModelAndView mav = new ModelAndView("error");
@@ -48,7 +48,7 @@ public class LoginController {
         ModelAndView mav = new ModelAndView("login/home");
         return mav;
     }
-    //跳转到登录页面
+    //跳转到403
     @RequestMapping("/403")
     public ModelAndView error403() {
         ModelAndView mav = new ModelAndView("error/403");
@@ -80,21 +80,25 @@ public class LoginController {
                 // 捕获密码错误异常
                 result.put("status", 10001);
                 result.put("message", "Account or password error");
+                result.put("message",new String("欲转换字符串11".getBytes(),"utf-8"));
                 return JsonUtil.toJson(result);
             } catch (UnknownAccountException uae) {
                 // 捕获未知用户名异常
                 result.put("status", 10002);
                 result.put("message","Account or password error");
+                result.put("message",new String("欲转换字符串22".getBytes(),"utf-8"));
                 return JsonUtil.toJson(result);
             } catch (ExcessiveAttemptsException eae) {
                 // 捕获错误登录过多的异常
                 result.put("status", 10003);
                 result.put("message", "Too many login errors");
+                result.put("message",new String("欲转换字符串33".getBytes(),"utf-8"));
                 return JsonUtil.toJson(result);
             }
         }
         result.put("status", 200);
         result.put("message", "Login successful");
+        result.put("message",new String("欲转换字符串44".getBytes(),"utf-8"));
         result.put("back_url", "/home");
         return JsonUtil.toJson(result);
     }
