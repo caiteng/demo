@@ -43,7 +43,7 @@ public class LoginController {
         return mav;
     }
     //跳转到home
-    @RequestMapping("/home.json")
+    @RequestMapping("/home")
     public ModelAndView login4() {
         ModelAndView mav = new ModelAndView("login/home");
         return mav;
@@ -65,7 +65,7 @@ public class LoginController {
     /**
      * 验证用户名和密码
      */
-    @RequestMapping(value="/checkLogin.json",method= RequestMethod.POST)
+    @RequestMapping(value="/checkLogin",method= RequestMethod.POST)
     @ResponseBody
     public String checkLogin(String username,String password) throws Exception {
         System.out.println("checkLogin");
@@ -78,19 +78,24 @@ public class LoginController {
                 subject.login(token);//验证角色和权限
             } catch (IncorrectCredentialsException ice) {
                 // 捕获密码错误异常
-                result.put("error", "账号或密码错误");
+                result.put("status", 10001);
+                result.put("message", "Account or password error");
                 return JsonUtil.toJson(result);
             } catch (UnknownAccountException uae) {
                 // 捕获未知用户名异常
-                result.put("error", "账号或密码错误");
+                result.put("status", 10002);
+                result.put("message","Account or password error");
                 return JsonUtil.toJson(result);
             } catch (ExcessiveAttemptsException eae) {
                 // 捕获错误登录过多的异常
-                result.put("error", "登录错误次数过多");
+                result.put("status", 10003);
+                result.put("message", "Too many login errors");
                 return JsonUtil.toJson(result);
             }
         }
-        result.put("success", "登录成功");
+        result.put("status", 200);
+        result.put("message", "Login successful");
+        result.put("back_url", "/home");
         return JsonUtil.toJson(result);
     }
 

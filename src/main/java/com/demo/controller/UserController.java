@@ -33,7 +33,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/get.json")
+    @RequestMapping("/get")
     @RequiresRoles("管理员")
     @RequiresPermissions("/admin/index")
     public ModelAndView findUser(String id){

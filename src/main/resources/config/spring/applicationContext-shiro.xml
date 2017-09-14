@@ -23,15 +23,16 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
         <!--登录页：没有登录的用户请求需要登录的页面时自动跳转到登录页面，可配置也可不配置-->
-        <property name="loginUrl" value="/login2" />
+        <property name="loginUrl" value="/login" />
         <!--没有权限默认跳转的页面-->
         <property name="unauthorizedUrl" value="/error" />
 
         <property name="filterChainDefinitions">
             <value>
-                /checkLogin.json = anon
-                /logout.json = anon
-                /home.json = anon
+                /login = anon
+                /checkLogin = anon
+                /logout = anon
+                /home = anon
                 /** = authc
             </value>
         </property>

@@ -18,7 +18,7 @@ password: <input type="password" id="password"><br><br>
         };
         $.ajax({
             type: "post",
-            url: "<%=request.getContextPath()%>" + "/checkLogin.json",
+            url: "<%=request.getContextPath()%>" + "/checkLogin",
             data: param,
             dataType: "json",
             success: function(data) {
@@ -27,7 +27,7 @@ password: <input type="password" id="password"><br><br>
                     console.log(data);
                     alert(data.success);
                     //登录成功
-                    window.location.href = "<%=request.getContextPath()%>" +  "/user/get.json?id="+1;
+                    window.location.href = "<%=request.getContextPath()%>" +  "/user/get?id="+1;
                 }else{
                     console.log(data);
                     alert(data.error);

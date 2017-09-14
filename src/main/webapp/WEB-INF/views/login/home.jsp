@@ -2,12 +2,12 @@
 <html>
 <head>
     <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
-<%--<style>--%>
+<style>
 
-        <%--body{background-color: #080708--%>
-        <%--}--%>
-    <%--</style>--%>
-        <%--<script type="text/javascript" src="/js/effect/login-canvas-particle.js"></script>--%>
+        body{background-color: #080708
+        }
+    </style>
+        <script type="text/javascript" src="/js/effect/login-canvas-particle.js"></script>
 </head>
 <body>
 <shiro:guest>
@@ -32,7 +32,7 @@
 
 
 <%--<!-- 背景div -->--%>
-<%--<div id="mydiv" style="height:600px;"></div>--%>
+<div id="mydiv" style="height:600px;"></div>
 
 </body>
 </html>

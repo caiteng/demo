@@ -78,12 +78,11 @@
                 });
                 return false;
             }
-            var pswd = MD5(username +"#" + password),
-                data = {pswd:pswd,email:username,rememberMe:$("#rememberMe").is(':checked')};
+                data = {password:password,username:username,rememberMe:$("#rememberMe").is(':checked')};
             var load = layer.load();
 
             $.ajax({
-                url:"/submitLogin.shtml",
+                url:"/checkLogin",
                 data:data,
                 type:"post",
                 dataType:"json",
@@ -92,7 +91,8 @@
                 },
                 success:function(result){
                     layer.close(load);
-                    if(result && result.status != 200){
+                    console.log(result);
+                    if(result.status != 200){
                         layer.msg(result.message,function(){});
                         $('.password').val('');
                         return;
@@ -103,10 +103,6 @@
                             window.location.href= result.back_url || "/";
                         },1000)
                     }
-                },
-                error:function(e){
-                    console.log(e,e.message);
-                    layer.msg('请看后台Java控制台，是否报错，确定已经配置数据库和Redis',new Function());
                 }
             });
         });
