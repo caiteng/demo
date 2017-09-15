@@ -66,13 +66,10 @@ public class LoginController {
     /**
      * 验证用户名和密码
      */
-    @RequestMapping(value="/checkLogin",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value="/checkLogin",method= RequestMethod.POST)
     @ResponseBody
     public String checkLogin(HttpServletResponse response,String username, String password) throws Exception {
         System.out.println("checkLogin");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
         Map<String, Object> result = new HashMap<String, Object>();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject subject  = SecurityUtils.getSubject();
@@ -104,6 +101,7 @@ public class LoginController {
         result.put("message", "Login successful");
         result.put("message",new String("登陆成功".getBytes(),"utf-8"));
         result.put("back_url", "/home");
+        System.out.println(JsonUtil.toJson(result));
         return JsonUtil.toJson(result);
     }
 
