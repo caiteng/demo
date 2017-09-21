@@ -99,7 +99,7 @@
 			
 			<script type="text/javascript" src="/plugins/layui/layui.js"></script>
 			<script type="text/javascript" src="/js/backEnd/nav.js"></script>
-			<script src="/js/index.js"></script>
+			<script src="/js/LayUI_backEnd/index.js"></script>
 			<script>
 				layui.use('layer', function() {
 					var $ = layui.jquery,

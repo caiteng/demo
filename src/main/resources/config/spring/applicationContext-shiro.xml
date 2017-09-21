@@ -29,6 +29,7 @@
 
         <property name="filterChainDefinitions">
             <value>
+                /index =anon
                 /login = anon
                 /login2 = anon
                 /js/** =anon

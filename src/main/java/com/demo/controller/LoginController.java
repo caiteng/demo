@@ -6,7 +6,6 @@ import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +25,12 @@ import java.util.Map;
 public class LoginController {
 
     //跳转到登录页面
+    @RequestMapping("/index")
+    public ModelAndView index(){
+        ModelAndView mav = new ModelAndView("index");
+        return mav;
+    }
+    //跳转到登录页面
     @RequestMapping("/login")
     public ModelAndView login(){
         ModelAndView mav = new ModelAndView("login/login");
@@ -34,7 +39,7 @@ public class LoginController {
     //跳转到error页面
     @RequestMapping("/error")
     public ModelAndView error()  {
-        ModelAndView mav = new ModelAndView("error");
+        ModelAndView mav = new ModelAndView("error/error");
         return mav;
     }
     //跳转到登录页面
@@ -79,7 +84,7 @@ public class LoginController {
                 subject.login(token);//验证角色和权限
                 result.put("status", 200);
                 result.put("message","登陆成功");
-                result.put("back_url", "/backEnd/index");
+                result.put("back_url", "/blog/index");
             } catch (IncorrectCredentialsException ice) {
                 // 捕获密码错误异常
                 result.put("status", 10001);
