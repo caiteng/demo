@@ -18,7 +18,7 @@ password: <input type="password" id="password"><br><br>
         };
         $.ajax({
             type: "post",
-            url: "<%=request.getContextPath()%>" + "/checkLogin",
+            url: "http://localhost:8080/keb/test/test",
             data: param,
             dataType: "json",
             success: function(data) {

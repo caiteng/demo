@@ -30,12 +30,14 @@
         <property name="filterChainDefinitions">
             <value>
                 /login = anon
+                /login2 = anon
+                /js/** =anon
+                /css/**=anon
                 /checkLogin = anon
                 /logout = anon
                 /home = anon
                 /** = authc
-                /js/** =anon
-                /css/**=anon
+
             </value>
         </property>
     </bean>

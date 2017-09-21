@@ -66,7 +66,7 @@ public class LoginController {
     /**
      * 验证用户名和密码
      */
-    @RequestMapping(value="/checkLogin",method= RequestMethod.POST)
+    @RequestMapping(value="/checkLogin",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String checkLogin(HttpServletResponse response,String username, String password) throws Exception {
         System.out.println("checkLogin");
@@ -77,31 +77,23 @@ public class LoginController {
             token.setRememberMe(true);
             try {
                 subject.login(token);//验证角色和权限
+                result.put("status", 200);
+                result.put("message","登陆成功");
+                result.put("back_url", "/backEnd/index");
             } catch (IncorrectCredentialsException ice) {
                 // 捕获密码错误异常
                 result.put("status", 10001);
-                result.put("message", "Account or password error");
-                result.put("message",new String("欲转换字符串11".getBytes(),"utf-8"));
-                return JsonUtil.toJson(result);
+                result.put("message", "密码错误");
             } catch (UnknownAccountException uae) {
                 // 捕获未知用户名异常
                 result.put("status", 10002);
-                result.put("message","Account or password error");
-                result.put("message",new String("欲转换字符串22".getBytes(),"utf-8"));
-                return JsonUtil.toJson(result);
+                result.put("message","用户名错误");
             } catch (ExcessiveAttemptsException eae) {
                 // 捕获错误登录过多的异常
                 result.put("status", 10003);
-                result.put("message", "Too many login errors");
-                result.put("message",new String("欲转换字符串33".getBytes(),"utf-8"));
-                return JsonUtil.toJson(result);
+                result.put("message", "登录次数过多");
             }
         }
-        result.put("status", 200);
-        result.put("message", "Login successful");
-        result.put("message",new String("登陆成功".getBytes(),"utf-8"));
-        result.put("back_url", "/home");
-        System.out.println(JsonUtil.toJson(result));
         return JsonUtil.toJson(result);
     }
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"  pageEncoding="utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
@@ -27,7 +27,6 @@
             <label><input type="checkbox" checked="checked"  id="rememberMe"style="width: 10px; height: 10px;">记住我</label>
         </div>
         <button type="button" id="login">登录</button>
-        <button type="button" id="register" class="register">Register</button>
         <div class="error"><span>+</span></div>
     </form>
 </div>
@@ -110,10 +109,6 @@
         });
         $('.page-container form .username, .page-container form .password').keyup(function(){
             $(this).parent().find('.error').fadeOut('fast');
-        });
-        //注册
-        $("#register").click(function(){
-            window.location.href="register.shtml";
         });
     });
 </script>
