@@ -28,14 +28,14 @@
     <script type="text/javascript" src="/plugins/layui/layui.js"></script>
     <script>
         layui.config({
-            base: '/js/'
+            base: '/js/backEnd/'
         }).use(['btable'], function () {
             var btable = layui.btable(),
                 $ = layui.jquery;
 
             btable.set({
                 elem: '#content',
-                url: 'datas/btable_data.json',
+                url: '/datas/btable_data.json',
                 pageSize: 3,
                 columns: [{
                     fieldName: '昵称',

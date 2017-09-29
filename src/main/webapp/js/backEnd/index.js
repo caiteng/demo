@@ -3,7 +3,7 @@
 var tab;
 
 layui.config({
-	base: 'js/',
+	base: '/js/backEnd/',
 	version:new Date().getTime()
 }).use(['element', 'layer', 'navbar', 'tab'], function() {
 	var element = layui.element(),
@@ -35,7 +35,7 @@ layui.config({
 		cached: true,
 		data: navs
 		/*cached:true,
-		url: 'datas/nav.json'*/
+		url: '/datas/nav.json'*/
 	});
 	//渲染navbar
 	navbar.render();

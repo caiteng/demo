@@ -131,7 +131,7 @@
 			</div>
 		</div>		
 		<script src="/plugins/layui/layui.js "></script>
-		<script src="/js/LayUI_backEnd/layout.js "></script>
+		<script src="/js/backEnd/layout.js "></script>
 	</body>
 
 </html>

@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="/plugins/layui/layui.js" ></script>
 		<script>
 			layui.config({
-				base: 'js/'
+				base: '/js/backEnd/'
 			}).use('city', function() {
 				var city = layui.city,
 					$ = layui.jquery;

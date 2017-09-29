@@ -73,7 +73,7 @@
 		<script type="text/javascript" src="/plugins/layui/layui.js"></script>
 		<script>
 			layui.config({
-				base: 'js/'
+				base: '/js/backEnd/'
 			});
 
 			layui.use(['paging', 'form'], function() {
@@ -84,7 +84,7 @@
 					form = layui.form();
 
 				paging.init({
-					url: 'datas/laytpl_laypage_data.json', //地址
+					url: '/datas/laytpl_laypage_data.json', //地址
 					elem: '#content', //内容容器
 					params: { //发送到服务端的参数
 					},

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div style="margin: 15px;">
 	<form class="layui-form">
 		<div class="layui-form-item">

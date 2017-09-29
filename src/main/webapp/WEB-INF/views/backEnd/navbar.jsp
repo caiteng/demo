@@ -35,7 +35,7 @@
 						    var navbar = layui.navbar();
 						    navbar.set({
 						        elem: '#nav',
-						        url: 'datas/nav.json'
+						        url: '/datas/nav.json'
 						    });
 						    navbar.render();
 						    navbar.on('click(demo)', function(data) {
@@ -289,7 +289,7 @@
 		<script type="text/javascript" src="/plugins/layui/layui.js"></script>
 		<script>
 			layui.config({
-				base: 'js/'
+				base: '/js/backEnd/'
 			}).use(['navbar', 'code'], function() {
 				var navbar = layui.navbar(),
 					layer = parent.layer === undefined ? layui.layer : parent.layer,
@@ -297,7 +297,7 @@
 				layui.code();
 				navbar.set({
 					elem: '#nav',
-					url: 'datas/nav.json',
+					url: '/datas/nav.json',
 					cached: true
 				});
 				navbar.render();

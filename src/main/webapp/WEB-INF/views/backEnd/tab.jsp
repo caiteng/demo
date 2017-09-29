@@ -93,9 +93,9 @@
 									<p>示例</p>
 									<p>
 										<pre class="layui-code">
-var index = tab.exists('用户中心');
-//e.g. 
-//result:1
+										var index = tab.exists('用户中心');
+										//e.g.
+										//result:1
 										</pre>
 									</p>
 								</td>
@@ -111,9 +111,9 @@ var index = tab.exists('用户中心');
 									<p>示例</p>
 									<p>
 										<pre class="layui-code">
-var id = tab.getTabId('用户中心');		
-//e.g. 
-//result:1488434851738
+										var id = tab.getTabId('用户中心');
+										//e.g.
+										//result:1488434851738
 										</pre>
 									</p>
 								</td>
@@ -134,11 +134,11 @@ var id = tab.getTabId('用户中心');
 									<p>示例</p>
 									<p>
 										<pre class="layui-code">
-								var id = tab.tabAdd({
-									href:'http://fly.zhengjinfan.cn/',
-									icon:'fa-user',
-									title:'百度'
-								});
+										var id = tab.tabAdd({
+											href:'http://fly.zhengjinfan.cn/',
+											icon:'fa-user',
+											title:'百度'
+										});
 										</pre>
 									</p>
 								</td>

@@ -84,7 +84,7 @@ public class LoginController {
                 subject.login(token);//验证角色和权限
                 result.put("status", 200);
                 result.put("message","登陆成功");
-                result.put("back_url", "/blog/index");
+                result.put("back_url", "/backEnd/index");
             } catch (IncorrectCredentialsException ice) {
                 // 捕获密码错误异常
                 result.put("status", 10001);

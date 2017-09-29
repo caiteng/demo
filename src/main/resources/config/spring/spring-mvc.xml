@@ -19,7 +19,7 @@
     <mvc:resources mapping="/js/**" location="/js/" />
     <mvc:resources mapping="/plugins/**" location="/plugins/" />
     <mvc:resources mapping="/images/**" location="/images/" />
-    <mvc:resources mapping="/images/**" location="/images/" />
+    <mvc:resources mapping="/datas/**" location="/datas/" />
 
 
     <!--自动扫描控制器-->

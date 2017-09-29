@@ -1,5 +1,5 @@
 layui.config({
-	base: 'js/'
+	base: '/js/'
 }).use(['element', 'layer', 'navbar', 'tab'], function() {
 	var element = layui.element()
 	$ = layui.jquery,
@@ -30,10 +30,10 @@ layui.config({
 			var url;
 			switch(id) {
 				case 1:
-					url = 'datas/nav_content.json';
+					url = '/datas/nav_content.json';
 					break;
 				case 3:
-					url = 'datas/nav_member.json';
+					url = '/datas/nav_member.json';
 					break;
 				default:
 					break;

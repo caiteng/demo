@@ -6,6 +6,7 @@ package com.demo.aspect;
 
 import com.demo.core.exception.DemoException;
 import com.demo.service.UserService;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -34,20 +35,19 @@ public class RegisterAspect {
      */
     @AfterReturning(value=ASPECT_SERVICE_EXECUTION, returning = "result")
     public void afterMethod(JoinPoint joinPoint, Object result){
-
-       // throw new DemoException("结果不存在");
-
+        //logger.info(result);
     }
 
+    private static Logger logger = Logger.getLogger(RegisterAspect.class);
     /**
-     * 对所有controller进行日志输出
+     * 对项目中所有controller进行日志输出
      * @param joinPoint
      */
     @Before(value=ASPECT_CONTROLLER_EXECUTION)
     public void controllerLog(JoinPoint joinPoint){
         String className = joinPoint.getTarget().getClass().getSimpleName();
         String methodName = joinPoint.getSignature().getName();
-        System.out.println(className+":"+methodName);
+        logger.info(className+":"+methodName);
     }
 
 }
