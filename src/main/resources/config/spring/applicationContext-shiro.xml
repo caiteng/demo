@@ -29,14 +29,14 @@
 
         <property name="filterChainDefinitions">
             <value>
-                /index =anon
-                /login = anon
-                /login2 = anon
-                /js/** =anon
-                /css/**=anon
-                /checkLogin = anon
-                /logout = anon
-                /home = anon
+                <!--/index =anon-->
+                <!--/login = anon-->
+                <!--/login2 = anon-->
+                <!--/js/** =anon-->
+                <!--/css/**=anon-->
+                <!--/checkLogin = anon-->
+                <!--/logout = anon-->
+                <!--/home = anon-->
                 /** = authc
 
             </value>
