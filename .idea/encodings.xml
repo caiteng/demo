@@ -7,6 +7,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/demo/service/UserService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/demo/service/UserServiceImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/demo/util/SerializeUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/demo/websocket/ChatWebSocketHandler.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/demo/websocket/WebSocketHandshakeInterceptor.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/demo/websocket/WebSocketTest.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
